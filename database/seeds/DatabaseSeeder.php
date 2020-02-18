@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CspSeeder::class);
         $this->call(UcssSeeder::class);
         $this->call(SpSeeder::class);
+        $this->call(EquivalenciaSeeder::class);
         $this->call(PrereqSeeder::class);
         $this->call(OfertaSeeder::class);
         $this->call(DistribucionSeeder::class);
