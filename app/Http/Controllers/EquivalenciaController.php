@@ -62,9 +62,17 @@ class EquivalenciaController extends Controller
      * @param  \App\Equivalencia  $equivalencia
      * @return \Illuminate\Http\Response
      */
-    public function edit(Equivalencia $equivalencia)
+    public function edit(Request $request)
     {
-        //
+        try {
+            $equiv = Equivalencia::findOrFail($request->id);
+            $equiv->cucss_id = $request->cucss_id;
+            $equiv->csp_id = $request->csp_id;
+            $equiv->save();
+        } catch (Exception $e) {
+            dd('Error', $e);
+        }
+
     }
 
     /**

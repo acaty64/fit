@@ -20,6 +20,11 @@ Route::post('/equivalencias/create/', [
 	'uses' => 'EquivalenciaController@create',
 ]);
 
+Route::post('/equivalencias/edit/', [
+	'as' => 'app.equivalencias.edit',
+	'uses' => 'EquivalenciaController@edit',
+]);
+
 Route::get('/prueba1', function () {
     return view('app.prueba');
 });
