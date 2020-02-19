@@ -16,9 +16,9 @@ class EquivalenciasTest extends TestCase
 
     /** 
      * @test 
-     * @testdox Creación de Equivalencias
+     * @testdox Creación de Equivalencia
      */
-    public function it_create_equivalencias()
+    public function it_create_equivalencia()
     {
         $request = [
         	'cucss_id' => 1,
@@ -31,9 +31,9 @@ class EquivalenciasTest extends TestCase
 
     /** 
      * @test 
-     * @testdox Edición de Equivalencias
+     * @testdox Edición de Equivalencia
      */
-    public function it_edit_equivalencias()
+    public function it_edit_equivalencia()
     {
         // Artisan::call('db:seed', ['--class' => 'CucssSeeder', '--database' => 'mysql_tests']);
         // Artisan::call('db:seed', ['--class' => 'CspSeeder', '--database' => 'mysql_tests']);
@@ -55,6 +55,31 @@ class EquivalenciasTest extends TestCase
 
         $response = $this->post(route('app.equivalencias.edit'), $request);
         $this->assertDatabaseHas('equivalencias', $request);
+        $this->assertDatabaseMissing('equivalencias', $equiv->toArray());
+    }
+
+    /** 
+     * @test 
+     * @testdox Eliminación de Equivalencia
+     */
+    public function it_delete_equivalencia()
+    {
+        
+        $data = [
+            'cucss_id' => 1,
+            'csp_id' => 1,
+        ];
+
+        $equiv = Equivalencia::create($data);
+
+        $this->assertDatabaseHas('equivalencias', $equiv->toArray());
+
+        $request = [
+            'id' => $equiv->id,
+        ];
+
+        $response = $this->post(route('app.equivalencias.destroy'), $request);
+
         $this->assertDatabaseMissing('equivalencias', $equiv->toArray());
     }
 

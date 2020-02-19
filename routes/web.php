@@ -25,6 +25,11 @@ Route::post('/equivalencias/edit/', [
 	'uses' => 'EquivalenciaController@edit',
 ]);
 
+Route::post('/equivalencias/destroy/', [
+	'as' => 'app.equivalencias.destroy',
+	'uses' => 'EquivalenciaController@destroy',
+]);
+
 Route::get('/prueba1', function () {
     return view('app.prueba');
 });

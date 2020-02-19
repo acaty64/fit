@@ -72,7 +72,6 @@ class EquivalenciaController extends Controller
         } catch (Exception $e) {
             dd('Error', $e);
         }
-
     }
 
     /**
@@ -93,8 +92,13 @@ class EquivalenciaController extends Controller
      * @param  \App\Equivalencia  $equivalencia
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Equivalencia $equivalencia)
+    public function destroy(Request $request)
     {
-        //
+        try {
+            $equiv = Equivalencia::findOrFail($request->id);
+            $equiv->delete();            
+        } catch (Exception $e) {
+            
+        }
     }
 }
