@@ -15,8 +15,8 @@ class CreateEquivalenciasTable extends Migration
     {
         Schema::create('equivalencias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('cucss_id');
-            $table->integer('csp_id');
+            $table->smallInteger('cucss_id');
+            $table->smallInteger('csp_id');
             $table->timestamps();
         });
     }

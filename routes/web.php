@@ -15,6 +15,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::post('/equivalencias/create/', [
+	'as' => 'app.equivalencias.create',
+	'uses' => 'EquivalenciaController@create',
+]);
+
 Route::get('/prueba1', function () {
     return view('app.prueba');
 });
@@ -61,7 +66,7 @@ Route::get('/prueba2', function () {
     return view('app.prueba2')->with('data',$data);
 });
 
-Auth::routes(['register' => false]);
-// Auth::routes();
+// Auth::routes(['register' => false]);
+Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

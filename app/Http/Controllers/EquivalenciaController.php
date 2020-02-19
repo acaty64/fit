@@ -25,9 +25,9 @@ class EquivalenciaController extends Controller
     public function create(Request $request)
     {
         try {
-            Equivalencia::create([
-                'cucss' => $request->cucss,
-                'csp' => $request->csp,
+            $response = Equivalencia::create([
+                'cucss_id' => $request->cucss_id,
+                'csp_id' => $request->csp_id,
             ]);
         } catch (Exception $e) {
             dd('Error', $e);

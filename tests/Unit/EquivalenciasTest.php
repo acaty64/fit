@@ -2,29 +2,32 @@
 
 namespace Tests\Unit;
 
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Artisan;
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class EquivalenciasTest extends TestCase
 {
-	use DatabaseMigrations;
+	use DatabaseTransactions;
 
     /** 
      * @test
      */
     public function it_create_equivalencias()
     {
-$this->markTestIncomplete('Corregir Seeder');    	
         Artisan::call('db:seed', ['--class' => 'CucssSeeder', '--database' => 'mysql_tests']);
         Artisan::call('db:seed', ['--class' => 'CspSeeder', '--database' => 'mysql_tests']);
         Artisan::call('db:seed', ['--class' => 'UcssSeeder', '--database' => 'mysql_tests']);
         Artisan::call('db:seed', ['--class' => 'SpSeeder', '--database' => 'mysql_tests']);
-        $request([
-        	'cucss' => 1,
-        	'csp' => 1,
-        ]);
+        $request = [
+        	'cucss_id' => 1,
+        	'csp_id' => 1,
+        ];
 
-        $this->post('/equivalencias/create', $request);
+        $response = $this->post(route('app.equivalencias.create'), $request);
+        $this->assertDatabaseHas('equivalencias', $request);
     }
 }
